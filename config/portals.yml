@@ -1,0 +1,303 @@
+# BlkOps Company Watchlist
+# Used by: scan skill, batch-scanner agent, GitHub Actions daily scan
+# Format: name, careers_url, ats_type, slug, priority (1=highest), enabled
+
+companies:
+
+  # ============================================================
+  # TIER 1 — PRIORITY SCAN (hit every session)
+  # ============================================================
+
+  - name: Insight Global
+    careers_url: https://jobs.insightglobal.com
+    ats_type: generic
+    slug: insightglobal
+    search_query: "site:jobs.insightglobal.com project manager OR business analyst OR AI consultant"
+    priority: 1
+    enabled: true
+    notes: "ATL HQ — register as candidate + check listings"
+
+  - name: Booz Allen Hamilton
+    careers_url: https://careers.boozallen.com
+    ats_type: workday
+    slug: boozallen
+    search_query: "site:careers.boozallen.com project manager OR business analyst OR AI consultant Atlanta"
+    priority: 1
+    enabled: true
+    notes: "DoD + IT PM — direct match to background"
+
+  - name: Leidos
+    careers_url: https://careers.leidos.com
+    ats_type: workday
+    slug: leidos
+    search_query: "site:careers.leidos.com project manager OR business analyst OR AI Atlanta"
+    priority: 1
+    enabled: true
+    notes: "Gov IT PM — public trust eligible"
+
+  - name: Deloitte
+    careers_url: https://apply.deloitte.com
+    ats_type: generic
+    slug: deloitte
+    search_query: "site:apply.deloitte.com consultant AI governance business analyst Atlanta OR Austin"
+    priority: 1
+    enabled: true
+    notes: "Public Sector Strategy PM — highest quality target"
+
+  - name: SAIC
+    careers_url: https://www.saic.com/careers
+    ats_type: workday
+    slug: saic
+    search_query: "site:jobs.saic.com project manager OR business analyst OR AI"
+    priority: 1
+    enabled: true
+    notes: "Applied Apr 14 — FOLLOW UP"
+
+  - name: Guidehouse
+    careers_url: https://guidehouse.com/careers
+    ats_type: workday
+    slug: guidehouse
+    search_query: "site:guidehouse.com/careers business analyst OR consultant OR AI Atlanta"
+    priority: 1
+    enabled: true
+
+  - name: TEKsystems
+    careers_url: https://www.teksystems.com/en/careers
+    ats_type: generic
+    slug: teksystems
+    search_query: "TEKsystems Atlanta project manager OR business analyst OR AI consultant 2026"
+    priority: 1
+    enabled: true
+    notes: "Register as candidate + check PM/BA listings"
+
+  - name: Apex Systems
+    careers_url: https://www.apexsystems.com/careers
+    ats_type: generic
+    slug: apexsystems
+    search_query: "Apex Systems Atlanta IT project manager OR business analyst OR AI 2026"
+    priority: 1
+    enabled: true
+    notes: "Contract-to-perm PM — Dunwoody/Perimeter office"
+
+  - name: Accenture Federal Services
+    careers_url: https://www.accenture.com/us-en/careers
+    ats_type: workday
+    slug: accenture
+    search_query: "site:accenture.com/us-en/careers consultant AI business analyst Atlanta OR Austin"
+    priority: 1
+    enabled: true
+
+  - name: ICF International
+    careers_url: https://www.icf.com/careers
+    ats_type: workday
+    slug: icf
+    search_query: "site:icf.com/careers consultant OR analyst OR AI Atlanta"
+    priority: 1
+    enabled: true
+
+  - name: IBM Consulting
+    careers_url: https://www.ibm.com/employment
+    ats_type: workday
+    slug: ibm
+    search_query: "site:ibm.com/employment consultant AI business analyst Atlanta OR Austin"
+    priority: 1
+    enabled: true
+
+  - name: NCR Voyix
+    careers_url: https://ncrvoyix.com/careers
+    ats_type: workday
+    slug: ncrvoyix
+    search_query: "site:ncrvoyix.com/careers project manager OR business analyst OR AI Atlanta"
+    priority: 1
+    enabled: true
+    notes: "Major ATL employer, fintech/ops"
+
+  - name: Cox Enterprises
+    careers_url: https://jobs.coxenterprises.com
+    ats_type: workday
+    slug: cox
+    search_query: "site:jobs.coxenterprises.com project manager OR business analyst OR AI Atlanta"
+    priority: 1
+    enabled: true
+    notes: "IT Strategy PM — ATL HQ, stable, strong comp"
+
+  - name: Tyler Technologies
+    careers_url: https://www.tylertech.com/careers
+    ats_type: workday
+    slug: tylertech
+    search_query: "site:tylertech.com/careers consultant OR analyst OR project manager"
+    priority: 1
+    enabled: true
+    notes: "Gov tech PM — DoD-to-govtech bridge"
+
+  - name: The HT Group
+    careers_url: https://www.thehtgroup.com
+    ats_type: generic
+    slug: htgroup
+    search_query: "HT Group Austin IT project manager OR business analyst OR AI consultant 2026"
+    priority: 1
+    enabled: true
+    notes: "ATX-native executive search — senior PM placements"
+
+  # ============================================================
+  # TIER 2 — NATIONAL CONSULTING & DEFENSE
+  # ============================================================
+
+  - name: CACI International
+    careers_url: https://careers.caci.com
+    ats_type: workday
+    slug: caci
+    search_query: "site:careers.caci.com project manager OR business analyst OR AI"
+    priority: 2
+    enabled: true
+
+  - name: Peraton
+    careers_url: https://www.peraton.com/careers
+    ats_type: workday
+    slug: peraton
+    search_query: "site:peraton.com/careers project manager OR business analyst Atlanta"
+    priority: 2
+    enabled: true
+
+  - name: ManTech
+    careers_url: https://www.mantech.com/careers
+    ats_type: workday
+    slug: mantech
+    search_query: "site:mantech.com/careers project manager OR business analyst OR AI"
+    priority: 2
+    enabled: true
+
+  - name: Guidehouse
+    careers_url: https://guidehouse.com/careers
+    ats_type: workday
+    slug: guidehouse
+    search_query: "site:guidehouse.com/careers AI consultant OR business analyst"
+    priority: 2
+    enabled: false
+    notes: "Already in Tier 1 — disabled here"
+
+  - name: KPMG
+    careers_url: https://www.kpmg.com/us/en/careers.html
+    ats_type: workday
+    slug: kpmg
+    search_query: "site:kpmg.com/us consultant AI OR business analyst Atlanta OR Austin"
+    priority: 2
+    enabled: true
+
+  - name: Protiviti
+    careers_url: https://www.protiviti.com/us-en/careers
+    ats_type: workday
+    slug: protiviti
+    search_query: "site:protiviti.com/us-en/careers consultant OR analyst Atlanta"
+    priority: 2
+    enabled: true
+
+  # ============================================================
+  # TIER 3 — ATLANTA DIRECT EMPLOYERS
+  # ============================================================
+
+  - name: Global Payments
+    careers_url: https://careers.globalpayments.com
+    ats_type: workday
+    slug: globalpayments
+    search_query: "site:careers.globalpayments.com project manager OR business analyst OR AI"
+    priority: 3
+    enabled: true
+
+  - name: Equifax
+    careers_url: https://careers.equifax.com
+    ats_type: workday
+    slug: equifax
+    search_query: "site:careers.equifax.com project manager OR business analyst OR AI Atlanta"
+    priority: 3
+    enabled: true
+
+  - name: Delta Air Lines
+    careers_url: https://careers.delta.com
+    ats_type: workday
+    slug: delta
+    search_query: "site:careers.delta.com project manager OR business analyst OR AI Atlanta"
+    priority: 3
+    enabled: true
+
+  - name: Home Depot
+    careers_url: https://careers.homedepot.com
+    ats_type: workday
+    slug: homedepot
+    search_query: "site:careers.homedepot.com project manager OR business analyst OR AI"
+    priority: 3
+    enabled: true
+
+  - name: Cardlytics
+    careers_url: https://www.cardlytics.com/careers
+    ats_type: greenhouse
+    slug: cardlytics
+    search_query: "site:boards.greenhouse.io/cardlytics analyst OR consultant OR AI"
+    priority: 3
+    enabled: true
+
+  # ============================================================
+  # TIER 4 — AUSTIN TARGETS (remote-eligible)
+  # ============================================================
+
+  - name: Dell Technologies
+    careers_url: https://jobs.dell.com
+    ats_type: workday
+    slug: dell
+    search_query: "site:jobs.dell.com project manager OR business analyst OR AI consultant remote OR Austin"
+    priority: 4
+    enabled: true
+
+  - name: Oracle Austin
+    careers_url: https://www.oracle.com/careers
+    ats_type: workday
+    slug: oracle
+    search_query: "site:oracle.com/careers consultant OR analyst OR AI Austin remote"
+    priority: 4
+    enabled: true
+
+  - name: Charles Schwab
+    careers_url: https://www.schwab.com/careers
+    ats_type: workday
+    slug: schwab
+    search_query: "site:schwab.com/careers project manager OR business analyst OR AI Austin"
+    priority: 4
+    enabled: true
+
+  - name: Q2 Holdings
+    careers_url: https://www.q2.com/company/careers
+    ats_type: greenhouse
+    slug: q2holdings
+    search_query: "site:boards.greenhouse.io/q2 project manager OR business analyst OR AI"
+    priority: 4
+    enabled: true
+
+  - name: GSG Talent Solutions
+    careers_url: https://www.gsgtalentsolutions.com
+    ats_type: generic
+    slug: gsg
+    search_query: "GSG Talent Solutions Austin IT project manager OR business analyst OR AI consultant 2026"
+    priority: 4
+    enabled: true
+    notes: "ATX-native staffing — mid-senior PM placements"
+
+# ============================================================
+# SCAN SETTINGS
+# ============================================================
+settings:
+  target_roles:
+    - "AI Consultant"
+    - "Business Analyst"
+    - "Senior Business Analyst"
+    - "IT Project Manager"
+    - "Technical Project Manager"
+    - "AI Governance Consultant"
+    - "Data Analyst"
+    - "Strategy Consultant"
+  keywords:
+    required: ["Atlanta OR Austin OR remote"]
+    preferred: ["AI", "consultant", "analyst", "project manager", "governance", "DoD", "federal"]
+    exclude: ["junior", "intern", "entry level", "associate consultant"]
+  min_score: 6
+  daily_scan_tiers: [1, 2]
+  weekly_scan_tiers: [3, 4]
