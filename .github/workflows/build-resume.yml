@@ -1,0 +1,46 @@
+name: Build Resume PDF
+
+on:
+  workflow_dispatch:
+    inputs:
+      resume_file:
+        description: 'HTML file in data/resumes/ (e.g. saic-it-pm.html)'
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate input file
+        run: |
+          INPUT="data/resumes/${{ inputs.resume_file }}"
+          if [ ! -f "$INPUT" ]; then
+            echo "ERROR: File not found — $INPUT"
+            echo "Available resumes:"
+            ls data/resumes/*.html 2>/dev/null || echo "(none built yet)"
+            exit 1
+          fi
+          echo "INPUT=$INPUT" >> $GITHUB_ENV
+
+      - name: Install LibreOffice
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libreoffice
+
+      - name: Convert HTML to PDF
+        run: |
+          libreoffice --headless \
+            --convert-to pdf \
+            --outdir data/resumes/ \
+            "$INPUT"
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-${{ inputs.resume_file }}-pdf
+          path: data/resumes/*.pdf
+          retention-days: 30

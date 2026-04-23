@@ -1,0 +1,113 @@
+name: Daily Job Scan
+
+on:
+  schedule:
+    - cron: '0 13 * * 1-5'  # 8am ET, Mon-Fri
+  workflow_dispatch:
+    inputs:
+      priority_only:
+        description: 'Scan priority-1 companies only'
+        type: boolean
+        default: true
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install anthropic pyyaml
+
+      - name: Create data directory
+        run: mkdir -p data
+
+      - name: Run scan
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PRIORITY_ONLY: ${{ inputs.priority_only || 'true' }}
+        run: |
+          python - <<'EOF'
+          import anthropic
+          import yaml
+          import os
+          from datetime import date
+
+          client = anthropic.Anthropic()
+          priority_only = os.environ.get('PRIORITY_ONLY', 'true').lower() == 'true'
+
+          with open('config/portals.yml') as f:
+              config = yaml.safe_load(f)
+
+          companies = [c for c in config['companies'] if c.get('enabled', True)]
+          if priority_only:
+              companies = [c for c in companies if c.get('priority', 99) == 1]
+
+          results = []
+
+          for company in companies:
+              query = company.get(
+                  'search_query',
+                  f"{company['name']} project manager OR business analyst careers 2026"
+              )
+
+              response = client.messages.create(
+                  model="claude-haiku-4-5-20251001",
+                  max_tokens=1024,
+                  tools=[{
+                      "type": "web_search_20250305",
+                      "name": "web_search",
+                      "max_uses": 2
+                  }],
+                  messages=[{
+                      "role": "user",
+                      "content": (
+                          f"Search: {query}\n\n"
+                          "Return a markdown bullet list of open job titles and their URLs. "
+                          "If nothing is found, respond with 'No listings found'."
+                      )
+                  }]
+              )
+
+              text = ' '.join(
+                  b.text for b in response.content if hasattr(b, 'text')
+              ).strip() or 'No listings found'
+
+              results.append({
+                  'name': company['name'],
+                  'url': company['careers_url'],
+                  'notes': company.get('notes', ''),
+                  'text': text
+              })
+
+          today = date.today().isoformat()
+          lines = [f"# BlkOps Scan Results — {today}\n"]
+          for r in results:
+              lines.append(f"## {r['name']}")
+              if r['notes']:
+                  lines.append(f"_{r['notes']}_")
+              lines.append(f"Careers: {r['url']}\n")
+              lines.append(r['text'])
+              lines.append('')
+
+          out = f"data/scan-{today}.md"
+          with open(out, 'w') as f:
+              f.write('\n'.join(lines))
+
+          print(f"Wrote {out} — {len(results)} companies scanned")
+          EOF
+
+      - name: Commit scan results
+        run: |
+          git config user.name "BlkOps Bot"
+          git config user.email "blkops-bot@noreply.github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "scan: $(date +%Y-%m-%d) daily results"
+          git push
